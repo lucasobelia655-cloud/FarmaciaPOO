@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="175.0" spacing="8.0" styleClass="card" stylesheets="@salud_integral.css" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+   </padding>
+   <children>
+      <Label fx:id="lblCategoria" text="Venta Libre" textFill="#db2777">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgProducto" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Caja%20de%20Paracetamol%20Salud%20∫.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblNombre" text="Paracetamol 500mg" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblStock" text="Disp: 24 • Caja / Pieza" textFill="#6b7280">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPrecio" text="\$45.00" textFill="#831843">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

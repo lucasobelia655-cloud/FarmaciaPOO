@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" styleClass="root-pane" stylesheets="@salud_integral.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="60.0" styleClass="top-header" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="brand-title" text="Farmacia Salud ∫" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label style="-fx-text-fill: #831843; -fx-font-weight: bold;" text="Caja Única • Turno Activo" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+         <tabs>
+            <!-- PESTAÑA 1: VENTAS -->
+            <Tab text="Ventas">
+               <content>
+                  <BorderPane>
+                     <center>
+                        <VBox spacing="12.0" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="txtBuscarVenta" promptText="Buscar por código o nombre..." HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" styleClass="btn-categoria" text="Todos" />
+                                    <Button mnemonicParsing="false" styleClass="btn-categoria" text="Venta Libre" />
+                                    <Button mnemonicParsing="false" styleClass="btn-categoria" text="Controlados / Antibióticos" />
+                                    <Button mnemonicParsing="false" styleClass="btn-categoria" text="Curación e Higiene" />
+                                 </children>
+                              </HBox>
+                              <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <TilePane fx:id="contenedorProductos" hgap="15.0" vgap="15.0">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </TilePane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </center>
+                     <right>
+                        <VBox prefWidth="440.0" spacing="12.0" styleClass="card" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="16.0" right="16.0" top="16.0" />
+                           </BorderPane.margin>
+                           <children>
+                              <Label style="-fx-text-fill: #831843; -fx-font-weight: bold;" text="Ticket de Venta">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tablaTicket" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn prefWidth="130.0" text="Producto" />
+                                    <TableColumn prefWidth="70.0" text="Pres." />
+                                    <TableColumn prefWidth="50.0" text="Cant." />
+                                    <TableColumn prefWidth="60.0" text="IVA" />
+                                    <TableColumn prefWidth="80.0" text="Subtotal" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cancelar" text="Quitar renglón" HBox.hgrow="ALWAYS" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cancelar" text="Cancelar venta" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <VBox spacing="6.0">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <Label text="Subtotal:" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblSubtotal" text="\$0.00" />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label text="IVA (16%):" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblIva" text="\$0.00" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold; -fx-text-fill: #831843;" text="Total:">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblTotal" style="-fx-font-weight: bold; -fx-text-fill: #831843;" text="\$0.00">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <Label style="-fx-font-weight: bold;" text="Pago:" />
+                                    <RadioButton fx:id="rbEfectivo" mnemonicParsing="false" selected="true" text="Efectivo">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="grupoPago" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rbTarjeta" mnemonicParsing="false" text="Tarjeta" toggleGroup="$grupoPago" />
+                                 </children>
+                              </HBox>
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-cobrar" text="Cobrar" />
+                           </children>
+                        </VBox>
+                     </right>
+                  </BorderPane>
+               </content>
+            </Tab>
+
+            <!-- PESTAÑA 2: INVENTARIO -->
+            <Tab text="Inventario">
+               <content>
+                  <BorderPane>
+                     <top>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets bottom="12.0" left="16.0" right="16.0" top="16.0" />
+                           </padding>
+                           <children>
+                              <TextField fx:id="txtBuscarInventario" promptText="Buscar producto en inventario..." HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" styleClass="btn-cobrar" style="-fx-font-size: 13px; -fx-padding: 8px 16px;" text="+ Nuevo Producto" />
+                              <Button mnemonicParsing="false" styleClass="btn-categoria" text="Reponer Stock" />
+                              <Button mnemonicParsing="false" styleClass="btn-cancelar" text="Ver Caducados / Próximos" />
+                           </children>
+                        </HBox>
+                     </top>
+                     <center>
+                        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets bottom="16.0" left="16.0" right="16.0" />
+                           </padding>
+                           <children>
+                              <TableView fx:id="tablaInventario" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn prefWidth="90.0" text="Código" />
+                                    <TableColumn prefWidth="200.0" text="Nombre" />
+                                    <TableColumn prefWidth="150.0" text="Categoría" />
+                                    <TableColumn prefWidth="90.0" text="Precio" />
+                                    <TableColumn prefWidth="80.0" text="Stock" />
+                                    <TableColumn prefWidth="100.0" text="Lote" />
+                                    <TableColumn prefWidth="110.0" text="Caducidad" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+
+            <!-- PESTAÑA 3: CORTE DE CAJA -->
+            <Tab text="Corte de Caja">
+               <content>
+                  <VBox spacing="16.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox spacing="16.0">
+                           <children>
+                              <VBox spacing="6.0" styleClass="card" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #9D174D; -fx-font-weight: bold;" text="Total Recaudado" />
+                                    <Label fx:id="lblCorteTotal" style="-fx-text-fill: #831843; -fx-font-weight: bold;" text="\$0.00">
+                                       <font>
+                                          <Font size="26.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" styleClass="card" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #9D174D; -fx-font-weight: bold;" text="Efectivo / Tarjeta" />
+                                    <Label fx:id="lblCorteDesglose" style="-fx-text-fill: #831843; -fx-font-weight: bold;" text="\$0.00 / \$0.00">
+                                       <font>
+                                          <Font size="26.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" styleClass="card" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #9D174D; -fx-font-weight: bold;" text="Transacciones" />
+                                    <Label fx:id="lblCorteTransacciones" style="-fx-text-fill: #831843; -fx-font-weight: bold;" text="0">
+                                       <font>
+                                          <Font size="26.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <TextField fx:id="txtBuscarFolio" promptText="Buscar venta por Folio..." />
+                              <DatePicker fx:id="dpFechaVenta" promptText="Filtrar por fecha" />
+                              <Button mnemonicParsing="false" styleClass="btn-categoria" text="Buscar" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" styleClass="btn-cobrar" text="Realizar Corte de Jornada" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tablaHistorialVentas" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn prefWidth="90.0" text="Folio" />
+                              <TableColumn prefWidth="160.0" text="Fecha y Hora" />
+                              <TableColumn prefWidth="120.0" text="Método Pago" />
+                              <TableColumn prefWidth="100.0" text="Subtotal" />
+                              <TableColumn prefWidth="100.0" text="IVA" />
+                              <TableColumn prefWidth="110.0" text="Total" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
